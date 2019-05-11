@@ -10,6 +10,13 @@ header {
 h1 {
   font-size: 1.4rem;
   font-weight: 500;
-  color: #fff;
+  /* color: #fff; */
   padding: 0 12px;
+}
+
+.Main {
+  background-color: rgba(#000, 0.15);
+  margin: auto;
+  max-width: 720px;
+  width: 80vw;
 }
