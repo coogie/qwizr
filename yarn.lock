@@ -26,6 +26,11 @@
   resolved "https://registry.yarnpkg.com/@stencil/state-tunnel/-/state-tunnel-0.0.9-5.tgz#09d3fcc69a6204d5f20a5efbbbc119af4443b56d"
   integrity sha512-LOPD9s3ZmLtFSrWJjjtv45+IZKCjdp1/EJp+fJl5btjQ2WrxQfQsQUdEkuoU4AygQ5Ly+PtX7Y3Lep8AU2zVnQ==
 
+dexie@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/dexie/-/dexie-2.0.4.tgz#6027a5e05879424e8f9979d8c14e7420f27e3a11"
+  integrity sha512-aQ/s1U2wHxwBKRrt2Z/mwFNHMQWhESerFsMYzE+5P5OsIe5o1kgpFMWkzKTtkvkyyEni6mWr/T4HUJuY9xIHLA==
+
 typescript@3.4.5:
   version "3.4.5"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.4.5.tgz#2d2618d10bb566572b8d7aad5180d84257d70a99"
