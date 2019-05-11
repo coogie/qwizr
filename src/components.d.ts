@@ -4,39 +4,52 @@
  * It contains typing information for all components that exist in this project.
  */
 
-import "@stencil/core";
 
-import "@stencil/router";
-import "@stencil/state-tunnel";
-import { MatchResults } from "@stencil/router";
+import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
+import { JSX } from '@stencil/core';
+import {
+  MatchResults,
+} from '@stencil/router';
+
 
 export namespace Components {
   interface AppHome {}
-  interface AppHomeAttributes extends StencilHTMLAttributes {}
-
   interface AppProfile {
-    match: MatchResults;
+    'match': MatchResults;
   }
-  interface AppProfileAttributes extends StencilHTMLAttributes {
-    match?: MatchResults;
+  interface AppRoot {}
+}
+
+declare namespace LocalJSX {
+  interface AppHome extends JSXBase.HTMLAttributes {}
+  interface AppProfile extends JSXBase.HTMLAttributes {
+    'match'?: MatchResults;
+  }
+  interface AppRoot extends JSXBase.HTMLAttributes {}
+
+  interface ElementInterfaces {
+    'AppHome': Components.AppHome;
+    'AppProfile': Components.AppProfile;
+    'AppRoot': Components.AppRoot;
   }
 
-  interface AppRoot {}
-  interface AppRootAttributes extends StencilHTMLAttributes {}
+  interface IntrinsicElements {
+    'AppHome': LocalJSX.AppHome;
+    'AppProfile': LocalJSX.AppProfile;
+    'AppRoot': LocalJSX.AppRoot;
+  }
+}
+export { LocalJSX as JSX };
+
+declare module "@stencil/core" {
+  export namespace JSX {
+    interface ElementInterfaces extends LocalJSX.ElementInterfaces {}
+    interface IntrinsicElements extends LocalJSX.IntrinsicElements {}
+  }
 }
 
 declare global {
-  interface StencilElementInterfaces {
-    AppHome: Components.AppHome;
-    AppProfile: Components.AppProfile;
-    AppRoot: Components.AppRoot;
-  }
 
-  interface StencilIntrinsicElements {
-    "app-home": Components.AppHomeAttributes;
-    "app-profile": Components.AppProfileAttributes;
-    "app-root": Components.AppRootAttributes;
-  }
 
   interface HTMLAppHomeElement extends Components.AppHome, HTMLStencilElement {}
   var HTMLAppHomeElement: {
@@ -44,9 +57,7 @@ declare global {
     new (): HTMLAppHomeElement;
   };
 
-  interface HTMLAppProfileElement
-    extends Components.AppProfile,
-      HTMLStencilElement {}
+  interface HTMLAppProfileElement extends Components.AppProfile, HTMLStencilElement {}
   var HTMLAppProfileElement: {
     prototype: HTMLAppProfileElement;
     new (): HTMLAppProfileElement;
@@ -57,24 +68,16 @@ declare global {
     prototype: HTMLAppRootElement;
     new (): HTMLAppRootElement;
   };
-
   interface HTMLElementTagNameMap {
-    "app-home": HTMLAppHomeElement;
-    "app-profile": HTMLAppProfileElement;
-    "app-root": HTMLAppRootElement;
+    'app-home': HTMLAppHomeElement
+    'app-profile': HTMLAppProfileElement
+    'app-root': HTMLAppRootElement
   }
 
   interface ElementTagNameMap {
-    "app-home": HTMLAppHomeElement;
-    "app-profile": HTMLAppProfileElement;
-    "app-root": HTMLAppRootElement;
+    'app-home': HTMLAppHomeElement;
+    'app-profile': HTMLAppProfileElement;
+    'app-root': HTMLAppRootElement;
   }
-
-  export namespace JSX {
-    export interface Element {}
-    export interface IntrinsicElements extends StencilIntrinsicElements {
-      [tagName: string]: any;
-    }
-  }
-  export interface HTMLAttributes extends StencilHTMLAttributes {}
 }
+
