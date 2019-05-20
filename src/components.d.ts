@@ -12,24 +12,33 @@ import {
 
 
 export namespace Components {
+  interface AppHeader {}
   interface AppHome {}
+  interface AppMenu {}
   interface AppProfile {
     'match': MatchResults;
   }
   interface AppRoot {}
+  interface BoilerPlate {}
 }
 
 declare namespace LocalJSX {
+  interface AppHeader extends JSXBase.HTMLAttributes {}
   interface AppHome extends JSXBase.HTMLAttributes {}
+  interface AppMenu extends JSXBase.HTMLAttributes {}
   interface AppProfile extends JSXBase.HTMLAttributes {
     'match'?: MatchResults;
   }
   interface AppRoot extends JSXBase.HTMLAttributes {}
+  interface BoilerPlate extends JSXBase.HTMLAttributes {}
 
   interface IntrinsicElements {
+    'app-header': AppHeader;
     'app-home': AppHome;
+    'app-menu': AppMenu;
     'app-profile': AppProfile;
     'app-root': AppRoot;
+    'boiler-plate': BoilerPlate;
   }
 }
 
@@ -47,10 +56,22 @@ declare global {
 
 
 
+  interface HTMLAppHeaderElement extends Components.AppHeader, HTMLStencilElement {}
+  var HTMLAppHeaderElement: {
+    prototype: HTMLAppHeaderElement;
+    new (): HTMLAppHeaderElement;
+  };
+
   interface HTMLAppHomeElement extends Components.AppHome, HTMLStencilElement {}
   var HTMLAppHomeElement: {
     prototype: HTMLAppHomeElement;
     new (): HTMLAppHomeElement;
+  };
+
+  interface HTMLAppMenuElement extends Components.AppMenu, HTMLStencilElement {}
+  var HTMLAppMenuElement: {
+    prototype: HTMLAppMenuElement;
+    new (): HTMLAppMenuElement;
   };
 
   interface HTMLAppProfileElement extends Components.AppProfile, HTMLStencilElement {}
@@ -65,10 +86,19 @@ declare global {
     new (): HTMLAppRootElement;
   };
 
+  interface HTMLBoilerPlateElement extends Components.BoilerPlate, HTMLStencilElement {}
+  var HTMLBoilerPlateElement: {
+    prototype: HTMLBoilerPlateElement;
+    new (): HTMLBoilerPlateElement;
+  };
+
   interface HTMLElementTagNameMap {
+    'app-header': HTMLAppHeaderElement;
     'app-home': HTMLAppHomeElement;
+    'app-menu': HTMLAppMenuElement;
     'app-profile': HTMLAppProfileElement;
     'app-root': HTMLAppRootElement;
+    'boiler-plate': HTMLBoilerPlateElement;
   }
 
   interface ElementTagNameMap extends HTMLElementTagNameMap {}
