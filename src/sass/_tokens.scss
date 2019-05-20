@@ -1,0 +1,37 @@
+$tokens: (
+  "contrast-threshold": 0.55,
+  "theme": (
+    "primary": #00a6ed,
+    "secondary": #ff69b4
+  ),
+  "grey": (
+    "base": hsla(0, 0, 0, 0.5),
+    "lightest": hsla(0, 0, 0, 0.18),
+    "light": hsla(0, 0, 0, 0.38),
+    "dark": hsla(0, 0, 0, 0.67),
+    "darkest": hsla(0, 0, 0, 0.87)
+  ),
+  "context": (
+    "positive": #157f41,
+    "negative": #d0021b,
+    "warning": #d35400
+  ),
+  "font-size": (
+    "base": 1rem,
+    "small": 0.85rem,
+    "large": 1.25rem
+  ),
+  "radius": (
+    "base": 5px,
+    "small": 3px,
+    "large": 7px,
+    "full": 50%
+  ),
+  "spacing": (
+    "base": 0.85em,
+    "x-small": 0.35em,
+    "small": 0.65em,
+    "large": 1em,
+    "x-large": 1.25em
+  )
+);

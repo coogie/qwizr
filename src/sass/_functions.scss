@@ -1,0 +1,137 @@
+// prettier-ignore
+
+// `get-token` is just a wrapper around `map-deep-get` that implicity targets
+// the `$token` map so that users don't need to worry about including that.
+//
+// @param  {Arglist} $keys - Chain of keys to traverse
+// @return {*} - Desired value
+@function get-token($keys...) {
+  @return map-deep-get($tokens, $keys...);
+}
+
+// `map-deep-get` accepts a arglist of keys which it will use to traverse
+// through nested Sass maps and retrun the value at the given key.
+//
+// @param  {Map} $map - The map through which the function should traverse
+// @param  {Arglist} $keys - Chain of keys to traverse
+// @return {*} - Desired value
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+  @return $map;
+}
+
+// Since the native Sass `map-merge` function is destructive, this function will
+// take two maps as arguments and then merge the two together, overwriting
+// matching values, and non-destructively adding new values in any nested maps
+//
+// @param  {Map} $parent-map - The target map that existing values will be replaced, and new values will be merged into
+// @param  {Map} $child-map - The map containing values to update/add
+// @return {*} - .
+@function non-destructive-map-merge($parent-map, $child-map) {
+  $result: $parent-map;
+  @each $key, $value in $child-map {
+    //If the parent map does not have the child map's key, simply add that key to the parent map.
+    @if not map-has-key($result, $key) {
+      $result: map-merge(
+        $result,
+        (
+          $key: $value
+        )
+      );
+    }
+    //If the parent map has the child map's key...
+    @else {
+      //If their type don't match, use the child map's value instead.
+      @if type-of(map-get($result, $key)) != type-of($value) {
+        $result: map-merge(
+          $result,
+          (
+            $key: $value
+          )
+        );
+      }
+      //If their type match...
+      @else {
+        //If they are both maps, we need another non-destructive merger.
+        @if type-of(map-get($result, $key)) == map and type-of($value) == map {
+          //Recursive, yay!
+          $tmp: non-destructive-map-merge(map-get($result, $key), $value);
+          $result: map-merge(
+            $result,
+            (
+              $key: $tmp
+            )
+          );
+        }
+        //If they are not maps, use the child map's value instead.
+        @else {
+          $result: map-merge(
+            $result,
+            (
+              $key: $value
+            )
+          );
+        }
+      }
+    }
+  }
+
+  @return $result;
+}
+
+// Computes the "brightness" of a color
+//
+// Brightness is similiar to lightness in HSL but more closely approximates
+// how humans perceive the intensity of the different RGB components of
+// a color. Brightness is sometimes called luminance.
+//
+// Returns a number between 0% and 100%, where 100% is fully bright
+// (white) and 0% is fully dark (black) for color values.
+//
+// @param  $color {Color} - The colour you wish to find the brightness of.
+// @return {Number} - The percentile representation of how "bright" a color appears to be.
+@function brightness($color) {
+  @if type-of($color) == color {
+    // @return ((red($color) * .299) + (green($color) * .587) + (blue($color) * .114)) / 255 * 100%;
+    @return (
+        (red($color) * 0.2126) + (green($color) * 0.7152) +
+          (blue($color) * 0.0722)
+      ) / 255 * 100%;
+  } @else {
+    @return unquote("brightness(#{$color})");
+  }
+}
+
+// Returns either the `$light` or `$dark` color
+// by deciding which contrasts more with `$color`.
+//
+// E.g. This can be used to select the more readable foreground color
+// for a given background color.
+//
+// @param  $color {Color} - The color that you wish to contrast with.
+// @param  $dark  {Color} - The colour of the "dark" result.
+// @param  $light {Color} - The colour of the "light" result.
+// @return {Color} - Returns the value of `$dark` or `$light`, based on which one provides better contrast against the passed `$color`.
+@function auto-contrast($color, $dark: #000000, $light: #ffffff) {
+  @if $color == null {
+    @return null;
+  }
+
+  $r: red($color) * 0.2126;
+  $g: green($color) * 0.7152;
+  $b: blue($color) * 0.0722;
+  $lightness: ($r + $g + $b) / 255;
+  $threshold: get-token("contrast-threshold");
+
+  @return if($lightness >= $threshold, $dark, $light);
+}
+
+// Takes a passed value and strips any units from it (em, px, rem, etc.)
+//
+// @param  $number {Number} - The value to have its units stripped.
+// @return {Number} - The value passed as $number without its unit.
+@function strip-units($number) {
+  @return $number / ($number * 0 + 1);
+}

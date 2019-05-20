@@ -13,5 +13,13 @@ export const config: Config = {
       // serviceWorker: null
     }
   ],
-  plugins: [sass()]
+  plugins: [
+    sass({
+      injectGlobalPaths: [
+        "src/sass/_tokens.scss",
+        "src/sass/_mixins.scss",
+        "src/sass/_functions.scss"
+      ]
+    })
+  ]
 };

@@ -1,0 +1,50 @@
+// Allows us to easily create breakpoint declarations in our Sass that is easy
+// to read.
+//
+// @param [String] The key to look for within the $grid--breakpoint map.
+// @returns A breakpoint declaration with all the contents of the mixin.
+@mixin breakpoint($breakpoint) {
+  $value: get-config("grid", "breakpoints", $breakpoint);
+
+  @if $value != null {
+    @media (min-width: $value) {
+      @content;
+    }
+  } @else {
+    @error "No breakpoint value found in config for `#{$breakpoint}`."
+         + "Please double-check the value exists in the map.";
+  }
+}
+
+// Stratum affects where in the z-index our element is places. A z-index
+// hierarchy is already defined and all elements should exist within their
+// respective levels, as appropriate.
+//
+// @param [String] The key to look for within the Strata map.
+// @param [Number] A modifying value to add to the matching key value in the Strata map.
+// @returns A `z-index` rule with a value applied.
+@mixin stratum($level, $modifier: 0) {
+  $final: get-config("strata", "base");
+
+  @if $modifier > 9 {
+    @error "$modifier cannot be greater than 9. Received: `#{$modifier}`.";
+  }
+
+  @if get-config("strata", $level) {
+    $final: get-config("strata", $level) + $modifier;
+  }
+
+  z-index: $final;
+}
+
+@mixin border-box() {
+  & {
+    box-sizing: border-box;
+  }
+
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+}
