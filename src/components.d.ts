@@ -20,40 +20,12 @@ export namespace Components {
   }
   interface AppRoot {}
   interface BoilerPlate {}
+  interface PageConfig {}
+  interface PageConfigAnswers {}
+  interface PageConfigQuestions {}
 }
-
-declare namespace LocalJSX {
-  interface AppHeader extends JSXBase.HTMLAttributes {}
-  interface AppHome extends JSXBase.HTMLAttributes {}
-  interface AppMenu extends JSXBase.HTMLAttributes {}
-  interface AppProfile extends JSXBase.HTMLAttributes {
-    'match'?: MatchResults;
-  }
-  interface AppRoot extends JSXBase.HTMLAttributes {}
-  interface BoilerPlate extends JSXBase.HTMLAttributes {}
-
-  interface IntrinsicElements {
-    'app-header': AppHeader;
-    'app-home': AppHome;
-    'app-menu': AppMenu;
-    'app-profile': AppProfile;
-    'app-root': AppRoot;
-    'boiler-plate': BoilerPlate;
-  }
-}
-
-export { LocalJSX as JSX };
-
-
-declare module "@stencil/core" {
-  export namespace JSX {
-    interface IntrinsicElements extends LocalJSX.IntrinsicElements {}
-  }
-}
-
 
 declare global {
-
 
 
   interface HTMLAppHeaderElement extends Components.AppHeader, HTMLStencilElement {}
@@ -92,6 +64,23 @@ declare global {
     new (): HTMLBoilerPlateElement;
   };
 
+  interface HTMLPageConfigElement extends Components.PageConfig, HTMLStencilElement {}
+  var HTMLPageConfigElement: {
+    prototype: HTMLPageConfigElement;
+    new (): HTMLPageConfigElement;
+  };
+
+  interface HTMLPageConfigAnswersElement extends Components.PageConfigAnswers, HTMLStencilElement {}
+  var HTMLPageConfigAnswersElement: {
+    prototype: HTMLPageConfigAnswersElement;
+    new (): HTMLPageConfigAnswersElement;
+  };
+
+  interface HTMLPageConfigQuestionsElement extends Components.PageConfigQuestions, HTMLStencilElement {}
+  var HTMLPageConfigQuestionsElement: {
+    prototype: HTMLPageConfigQuestionsElement;
+    new (): HTMLPageConfigQuestionsElement;
+  };
   interface HTMLElementTagNameMap {
     'app-header': HTMLAppHeaderElement;
     'app-home': HTMLAppHomeElement;
@@ -99,8 +88,45 @@ declare global {
     'app-profile': HTMLAppProfileElement;
     'app-root': HTMLAppRootElement;
     'boiler-plate': HTMLBoilerPlateElement;
+    'page-config': HTMLPageConfigElement;
+    'page-config-answers': HTMLPageConfigAnswersElement;
+    'page-config-questions': HTMLPageConfigQuestionsElement;
   }
-
-  interface ElementTagNameMap extends HTMLElementTagNameMap {}
 }
+
+declare namespace LocalJSX {
+  interface AppHeader extends JSXBase.HTMLAttributes<HTMLAppHeaderElement> {}
+  interface AppHome extends JSXBase.HTMLAttributes<HTMLAppHomeElement> {}
+  interface AppMenu extends JSXBase.HTMLAttributes<HTMLAppMenuElement> {}
+  interface AppProfile extends JSXBase.HTMLAttributes<HTMLAppProfileElement> {
+    'match'?: MatchResults;
+  }
+  interface AppRoot extends JSXBase.HTMLAttributes<HTMLAppRootElement> {}
+  interface BoilerPlate extends JSXBase.HTMLAttributes<HTMLBoilerPlateElement> {}
+  interface PageConfig extends JSXBase.HTMLAttributes<HTMLPageConfigElement> {}
+  interface PageConfigAnswers extends JSXBase.HTMLAttributes<HTMLPageConfigAnswersElement> {}
+  interface PageConfigQuestions extends JSXBase.HTMLAttributes<HTMLPageConfigQuestionsElement> {}
+
+  interface IntrinsicElements {
+    'app-header': AppHeader;
+    'app-home': AppHome;
+    'app-menu': AppMenu;
+    'app-profile': AppProfile;
+    'app-root': AppRoot;
+    'boiler-plate': BoilerPlate;
+    'page-config': PageConfig;
+    'page-config-answers': PageConfigAnswers;
+    'page-config-questions': PageConfigQuestions;
+  }
+}
+
+export { LocalJSX as JSX };
+
+
+declare module "@stencil/core" {
+  export namespace JSX {
+    interface IntrinsicElements extends LocalJSX.IntrinsicElements {}
+  }
+}
+
 
