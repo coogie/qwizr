@@ -2,24 +2,24 @@
 # yarn lockfile v1
 
 
-"@stencil/core@~1.0.0-beta.2":
-  version "1.0.0-beta.2"
-  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-1.0.0-beta.2.tgz#8090345b08249c5ae93a0fe59cbc67b8597876e9"
-  integrity sha512-RRkR8s2hmlC6U1fjYgJsFOIIiHhFURyQQLYDpoo8eeUQWW3QSdNrHfqLjw0MmgqaYAIUi68EL50eJSmQjffFRw==
+"@stencil/core@~1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-1.0.0.tgz#60216d288b118daa88151a4a94154b549f83be3f"
+  integrity sha512-Ygap25A4sqq5ihF23//BuMFigQd+SJatgqVxGsa7UgFrMLJRptJI2Ztt+yLic4oSxbHkcRL3/OrSdUkZzaystw==
   dependencies:
-    typescript "3.4.5"
+    typescript "3.5.1"
 
-"@stencil/router@~1.0.0-1":
-  version "1.0.0-1"
-  resolved "https://registry.yarnpkg.com/@stencil/router/-/router-1.0.0-1.tgz#1b0fcc1b6c68ee670ff18f77a47de8d71748cc1a"
-  integrity sha512-MUhvZz6gWF7jnp+ai9yySLbDnrY4BGfTvbpfgJn/24qGL8qUf6QUd6dguyKpKVeG9FJhwc0EoA4EPTYqUKPy1g==
+"@stencil/router@one":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@stencil/router/-/router-1.0.0.tgz#f72d9af699758763f03eb26233a4838ff5af1a04"
+  integrity sha512-pPUx/QIDp+59NTofqZEj9Yy0AJHjRSwwk2sc6Jre6sZBwhQyPjKKcyoZLU2XfWxtVMdYOH/frFUaTSd7eInokg==
   dependencies:
     "@stencil/state-tunnel" "^1.0.0-1"
 
-"@stencil/sass@^0.2.1":
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/@stencil/sass/-/sass-0.2.1.tgz#852cbfcce38e51be2c4ac6362a8e165e4fc7ce1e"
-  integrity sha512-/yElBDP7Q/diheHr3ZRP4NAVC53qOEgUWE0mymP7R/iwdOwvrwwzfWWrNSWV+O9apE4SfRs7P9CrKXGzMKTqSg==
+"@stencil/sass@^0.2.3":
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/@stencil/sass/-/sass-0.2.3.tgz#836d819d4c3e1182e551de12a7aac77099d9aea2"
+  integrity sha512-JmS0HQVZ+TuBdk+kvNkDJPQYLjC/sc3Ionsbo7/MccdSu7JLikdQ4JOdQClDMdaMV2m4jqHjlQMpxMtOWLf7CQ==
 
 "@stencil/state-tunnel@^1.0.0-1":
   version "1.0.0-1"
@@ -36,7 +36,7 @@ dexie@^2.0.4:
   resolved "https://registry.yarnpkg.com/dexie/-/dexie-2.0.4.tgz#6027a5e05879424e8f9979d8c14e7420f27e3a11"
   integrity sha512-aQ/s1U2wHxwBKRrt2Z/mwFNHMQWhESerFsMYzE+5P5OsIe5o1kgpFMWkzKTtkvkyyEni6mWr/T4HUJuY9xIHLA==
 
-typescript@3.4.5:
-  version "3.4.5"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.4.5.tgz#2d2618d10bb566572b8d7aad5180d84257d70a99"
-  integrity sha512-YycBxUb49UUhdNMU5aJ7z5Ej2XGmaIBL0x34vZ82fn3hGvD+bgrMrVDpatgz2f7YxUMJxMkbWxJZeAvDxVe7Vw==
+typescript@3.5.1:
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.5.1.tgz#ba72a6a600b2158139c5dd8850f700e231464202"
+  integrity sha512-64HkdiRv1yYZsSe4xC1WVgamNigVYjlssIoaH2HcZF0+ijsk5YK2g0G34w9wJkze8+5ow4STd22AynfO6ZYYLw==
